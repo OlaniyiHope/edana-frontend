@@ -799,13 +799,14 @@ export default function ReportCard({ termLabel }: Props) {
   const colSpan = tableHeaders.length;
 
   // score summary
-  const marksObtained: number = isCumulative
-    ? cumulativeRows.reduce((s, r) => s + r.total, 0)
-    : scores.reduce((s, r) => {
-        const t = Number(r.marksObtained ?? r.total) ||
-          Number(r.testscore ?? r.firstTest ?? 0) + Number(r.examscore ?? r.examScore ?? 0);
-        return s + t;
-      }, 0);
+// score summary
+const marksObtained: number = isCumulative
+  ? cumulativeRows.reduce((s, r) => s + r.average, 0)   // ← was r.total
+  : scores.reduce((s, r) => {
+      const t = Number(r.marksObtained ?? r.total) ||
+        Number(r.testscore ?? r.firstTest ?? 0) + Number(r.examscore ?? r.examScore ?? 0);
+      return s + t;
+    }, 0);
 
   const subjectCount: number       = isCumulative ? cumulativeRows.length : scores.length;
   const totalPossibleMarks: number = subjectCount * 100;
