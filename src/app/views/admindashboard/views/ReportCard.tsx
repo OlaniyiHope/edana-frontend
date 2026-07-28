@@ -966,8 +966,6 @@ const marksObtained: number = isCumulative
             {(
               [
                 ["Name",          student?.studentName || student?.name || "—"],
-                ["Date of Birth", student?.dob         || "—"],
-                ["Sex",           student?.gender       || "—"],
                 ["Class",         student?.classname    || "—"],
                 ["Admission No.", student?.AdmNo        || "—"],
               ] as [string, string][]
