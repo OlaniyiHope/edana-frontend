@@ -200,7 +200,7 @@ export default function ReportCard({ termLabel }: Props) {
   const isCumulative   = termLabel.toLowerCase() === "cumulative";
   const cumulativeRows = isCumulative ? buildCumulativeRows(scores) : [];
   const termKeyword    = termLabel.split(" ")[0].toLowerCase();
-
+const psyKeyword     = isCumulative ? "third" : termKeyword;
   const tableHeaders: string[] = isCumulative
     ? ["Subject", "1st Term", "2nd Term", "3rd Term", "Total", "Average", "Grade", "Remark"]
     : ["Subject", "Test", "Exam", "Total", "Grade", "Remark"];
@@ -240,7 +240,7 @@ const marksObtained: number = isCumulative
       .then((examRes) => {
         const exams: any[]   = Array.isArray(examRes.data) ? examRes.data : [];
         const matchedExam    = exams.find((e: any) =>
-          (e.name || "").toLowerCase().includes(termKeyword)
+          (e.name || "").toLowerCase().includes(psyKeyword)
         );
 
         return Promise.allSettled([
